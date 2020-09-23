@@ -16,8 +16,11 @@ public class Parser {
         inputLine = scanner.nextLine().toUpperCase();
 
         String[] playerInput = inputLine.split(" ");
-        CommandWords word = CommandWords.valueOf(playerInput[0]);
-        if(word != null || word == CommandWords.UNKNOWN) {
+        CommandWords word = null;
+        for(CommandWords commandWord : CommandWords.values()){
+            if(commandWord.equalsIgnoreCase(playerInput[0])) word = commandWord;
+        }
+        if(word != null && !word.equals(CommandWords.UNKNOWN)) {
             String[] arguments = Arrays.copyOfRange(playerInput, 1, playerInput.length);
             return new Command(word, arguments);
         }
