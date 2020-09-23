@@ -3,6 +3,10 @@ package me.tue.commands;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Tracks and controls input from the player
+ * @author Tue & Philip
+ */
 public class Parser {
     Scanner scanner;
 

@@ -1,5 +1,8 @@
 package me.tue.commands;
-
+/**
+ *  A enum class to track command words
+ * @author Tue & Philip
+ */
 public enum CommandWords {
     GO, ATTACK, PEEK, LOOK, TAKE, UNKNOWN;
 
