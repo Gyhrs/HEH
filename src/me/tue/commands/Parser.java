@@ -22,5 +22,5 @@ public class Parser {
             return new Command(word, arguments);
         }
         return new Command(CommandWords.UNKNOWN, null);
-        }
     }
+}
