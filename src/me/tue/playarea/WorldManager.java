@@ -11,8 +11,9 @@ public class WorldManager {
     }
 
     public void createHell() {
-        World hell = new World("Hell", "A world of punishment and suffering",10,10);
-        worldlayout[][]
+        World hell = new World("Hell", "A world of punishment and suffering", 10, 10);
+        hell.setRoom(new Room("Starting Room"),5,5);
+
         worlds.add(hell);
     }
 
