@@ -22,7 +22,16 @@ public class WorldManager {
      */
     public void createHell() {
         World hell = new World("Hell", "A world of punishment and suffering", 10, 10);
-        hell.setRoom(new Room("Starting Room"),5,5);
+        // Creates Room 1 and sets locations
+        Room r1 = new Room("Starting Room");
+        r1.setExits("east", new Location(hell,6,5));
+        hell.createRoom(r1, 5,5);
+        // Creates Room 2...
+
+        //Creates Room 3...
+
+        //Creates Room 4...
+
         worlds.add(hell);
     }
 

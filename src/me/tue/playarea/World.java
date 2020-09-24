@@ -68,7 +68,7 @@ public class World {
      * @param x = The x value of the location of the room
      * @param y = The y value of the location of the room
      */
-    public void setRoom(Room room, int x, int y) {
+    public void createRoom(Room room, int x, int y) {
         worldLayout[x][y] = room;
     }
 }
