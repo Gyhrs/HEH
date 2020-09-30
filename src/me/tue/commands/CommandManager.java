@@ -30,6 +30,7 @@ public class CommandManager {
                 Room currentRoom = currentLoc.getWorld().getRoom(currentLoc.getX(), currentLoc.getY());
                 if(!command.hasArguments()){
                     System.out.println("Go where?");
+                    System.out.println(currentRoom.toString());
                     return;
                 }
                 String direction = command.getArgument(0);
@@ -45,6 +46,7 @@ public class CommandManager {
                 }
                 main.getPlayer().setLocation(nextLocation);
                 System.out.println("You enter a new room... " + nextRoom.getDescription());
+                System.out.println(nextRoom.toString());
                 break;
 
             case QUIT:

@@ -58,4 +58,5 @@ public class Command {
     public boolean hasArguments() {
         return ((arguments != null) && (arguments.length > 0));
     }
+
 }

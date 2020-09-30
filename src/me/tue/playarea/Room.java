@@ -1,5 +1,7 @@
 package me.tue.playarea;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -10,7 +12,6 @@ import java.util.HashMap;
 public class Room {
     private String description;
     private HashMap<String, Location> exits;
-
     /**
      * Constructor
      * @param description = The description of the room
@@ -29,7 +30,7 @@ public class Room {
     }
 
     public Location getExit(String direction){
-        return this.exits.get(direction);
+        return this.exits.get(direction.toUpperCase());
     }
 
     /**
@@ -38,6 +39,11 @@ public class Room {
      * @param loc = Which x,y coordinate the exit leads to
      */
     public void setExits(String direction, Location loc ) {
-        exits.put(direction, loc);
+        exits.put(direction.toUpperCase(), loc);
+    }
+
+    @Override
+    public String toString() {
+        return "{" + Arrays.toString(exits.keySet().toArray()) + "}";
     }
 }

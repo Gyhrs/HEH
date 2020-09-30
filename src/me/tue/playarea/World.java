@@ -1,5 +1,7 @@
 package me.tue.playarea;
 
+import java.util.Arrays;
+
 public class World {
 
     private final String name;
@@ -27,6 +29,15 @@ public class World {
 
     public String getName() {
         return name;
+    }
+
+    public Room[][] getRooms(){
+        return this.worldLayout;
+    }
+
+    @Override
+    public String toString(){
+        return "{Name: " + this.name + ", width: " + this.width + ", height: " + this.height + ", rooms: " + Arrays.toString(worldLayout) + "}";
     }
 
     public String getDescription() {
@@ -74,7 +85,7 @@ public class World {
 
     /**
      * Return the start location
-     * @return
+     * @return = Returns the start location
      */
     public Location getStartLocation() {
         return new Location(this,startX,startY);
