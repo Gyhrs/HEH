@@ -28,6 +28,15 @@ public class Room {
         return description;
     }
 
+    public Location getExit(String direction){
+        return this.exits.get(direction);
+    }
+
+    /**
+     * Sets exits for room
+     * @param direction = Which direction the exit is
+     * @param loc = Which x,y coordinate the exit leads to
+     */
     public void setExits(String direction, Location loc ) {
         exits.put(direction, loc);
     }

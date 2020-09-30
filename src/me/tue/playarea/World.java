@@ -71,4 +71,12 @@ public class World {
     public void createRoom(Room room, int x, int y) {
         worldLayout[x][y] = room;
     }
+
+    /**
+     * Return the start location
+     * @return
+     */
+    public Location getStartLocation() {
+        return new Location(this,startX,startY);
+    }
 }

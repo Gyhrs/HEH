@@ -4,7 +4,7 @@ package me.tue.commands;
  * @author Tue & Philip
  */
 public enum CommandWords {
-    GO, ATTACK, PEEK, LOOK, TAKE, UNKNOWN;
+    GO, ATTACK, PEEK, LOOK, TAKE, UNKNOWN, QUIT, HELP;
 
     @Override
     public String toString() {
