@@ -41,7 +41,6 @@ public class Main {
         while(running) {
             Command command = parser.getCommand();
             commandManager.run(command);
-            System.out.println(this.getPlayer().getLocation().toString());
         }
     }
 
