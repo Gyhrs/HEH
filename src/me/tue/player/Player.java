@@ -1,5 +1,6 @@
 package me.tue.player;
 
+import me.tue.inventory.Inventory;
 import me.tue.playarea.Location;
 
 /**
@@ -8,9 +9,11 @@ import me.tue.playarea.Location;
  */
 public class Player {
     private Location location;
+    private Inventory inventory;
 
     public Player() {
         this.location = new Location(null, 0, 0);
+        this.inventory = new Inventory(30);
     }
 
     /**
@@ -27,5 +30,14 @@ public class Player {
      */
     public Location getLocation() {
         return location;
+    }
+
+
+    /**
+     * Gets the players inventory
+     * @return The players inventory
+     */
+    public Inventory getInventory() {
+        return inventory;
     }
 }
