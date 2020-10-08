@@ -1,6 +1,7 @@
 package me.tue.player;
 
 import me.tue.inventory.Inventory;
+import me.tue.inventory.Item;
 import me.tue.playarea.Location;
 
 /**
@@ -9,11 +10,21 @@ import me.tue.playarea.Location;
  */
 public class Player {
     private Location location;
-    private Inventory inventory;
+    private final Inventory inventory;
 
     public Player() {
         this.location = new Location(null, 0, 0);
-        this.inventory = new Inventory(30);
+        this.inventory = new Inventory("Player Inventory",30);
+        this.addTestItems();
+    }
+
+    private void addTestItems(){
+        Item sword = new Item("Sword", 10);
+        Item stick = new Item("Stick", .5);
+        System.out.println("DROP1: " + this.getInventory().addItem(sword, 1));
+        System.out.println("DROP2: " + this.getInventory().addItem(sword, 3));
+        System.out.println("DROP3: " + this.getInventory().addItem(stick, 3));
+
     }
 
     /**

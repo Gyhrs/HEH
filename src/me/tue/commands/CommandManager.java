@@ -48,7 +48,9 @@ public class CommandManager {
                 System.out.println("You enter a new room... " + nextRoom.getDescription());
                 System.out.println(nextRoom.toString());
                 break;
-
+            case INVENTORY:
+                main.getPlayer().getInventory().display();
+                break;
             case QUIT:
                 System.out.println("Thank you for playing");
                 main.setRunning(false);

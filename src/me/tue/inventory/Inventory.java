@@ -1,7 +1,9 @@
 package me.tue.inventory;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringJoiner;
 
 /**
  * Inventory class that can be implemented in other objects
@@ -11,12 +13,14 @@ public class Inventory {
     //Item, Amount
     private final Map<Item, Integer> items;
     private int maxWeight;
+    private String displayName;
 
     /**
      * Constructor of inventory
      * @param maxWeight The max weight of items in the inventory
      */
-    public Inventory(int maxWeight){
+    public Inventory(String displayName, int maxWeight){
+        this.displayName = displayName;
         this.items = new HashMap<>();
         this.maxWeight = maxWeight;
     }
@@ -75,21 +79,29 @@ public class Inventory {
      * Adds a item to the inventory
      * @param item = the item
      * @param amount = the amount
-     * @return Returns the number of items dropped if items exceed the maxWeight
+     * @return whether or not the item was added
      */
-    public int addItem(Item item, int amount){
-        int droppedItems = 0;
-        if(this.containsItem(item)){
-            double currentWeight = this.calcWeight();
-            int weightAfter = (int) Math.floor(currentWeight + (item.getWeight()*amount));
-            if(weightAfter > this.maxWeight){
-                amount = (int) ((weightAfter-currentWeight)/item.getWeight());
+    public boolean addItem(Item item, int amount){
+        if(canAddItem(item, amount)){
+            if(this.containsItem(item)){
+                amount += this.getAmount(item);
             }
-            amount += this.getAmount(item);
-            this.items.remove(item);
+            this.setItem(item, amount);
+            return true;
         }
-        this.items.put(item, amount);
-        return droppedItems;
+        return false;
+
+    }
+
+    public boolean canAddItem(Item item, int amount){
+        return (this.calcWeight() + item.getWeight()*amount) < this.maxWeight;
+    }
+
+    public void setItem(Item item, int amount){
+        if(this.containsItem(item)){
+            this.removeItem(item);
+        }
+        this.getItems().put(item, amount);
     }
 
     /**
@@ -100,7 +112,7 @@ public class Inventory {
     public void setAmount(Item item, int amount){
         if(this.containsItem(item)){
             this.removeItem(item);
-            this.addItem(item, amount);
+            this.getItems().put(item, amount);
         }
     }
 
@@ -125,5 +137,45 @@ public class Inventory {
                 this.removeItem(item);
             }
         }
+    }
+
+    public Map<Item, Integer> getItems() {
+        return items;
+    }
+
+    public void display(){
+        String weight = " Weight: " + this.calcWeight() + " ";
+        int difference = (this.getDisplayName().length()-weight.length())/2;
+
+        difference += 7; //6 (------) +1
+        String s = String.join("", Collections.nCopies(difference, "-"));
+        weight = s + weight + s;
+        System.out.println("------ " + this.getDisplayName() + " -------");
+        int size = this.getItems().size();
+        if(this.getItems().isEmpty()){
+            System.out.println("| NO ITEMS IN THE INVENTORY |");
+        }else{
+            int rows = size/9;
+            for(int i = 0; i<rows+1; i++){
+                int j = 0;
+                StringJoiner sj = new StringJoiner(", ", "| ", " |");
+                for(Map.Entry<Item, Integer> entry : this.getItems().entrySet()){
+                    if(j < (i*9) || j >= ((i+1)*9)) continue;
+                    sj.add(entry.getKey().getDisplayName() + "x" + entry.getValue());
+                }
+                System.out.println(sj.toString());
+            }
+        }
+
+        System.out.println(weight);
+
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 }
