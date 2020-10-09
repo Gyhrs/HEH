@@ -16,7 +16,16 @@ public class Monster extends Entity {
         return damage;
     }
 
-    public void flee() {
+    public float takeDamage(float damage) {
+        hp = (int) Math.floor(hp-damage);
+        if(hp >= 0) {
+            super.kill();
+            hp = 0;
+        }
+        return hp;
+    }
 
+    public void flee() {
+        super.kill();
     }
 }

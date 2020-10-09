@@ -36,4 +36,9 @@ public class Entity {
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
+
+    public void kill() {
+        setAlive(false);
+        setLocation(null);
+    }
 }
