@@ -2,10 +2,10 @@ package me.tue.inventory;
 
 public class Item {
 
-    private String displayName;
-    private double weight;
+    protected String displayName;
+    protected float weight;
 
-    public Item(String displayName, double weight){
+    public Item(String displayName, float weight){
         this.displayName = displayName;
         this.weight = weight;
     }
@@ -18,11 +18,11 @@ public class Item {
         this.displayName = displayName;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(float weight) {
         this.weight = weight;
     }
 
-    public double getWeight() {
+    public float getWeight() {
         return weight;
     }
 

@@ -20,7 +20,7 @@ public class Player {
 
     private void addTestItems(){
         Item sword = new Item("Sword", 10);
-        Item stick = new Item("Stick", .5);
+        Item stick = new Item("Stick", 0.5F);
         System.out.println("DROP1: " + this.getInventory().addItem(sword, 1));
         System.out.println("DROP2: " + this.getInventory().addItem(sword, 3));
         System.out.println("DROP3: " + this.getInventory().addItem(stick, 3));

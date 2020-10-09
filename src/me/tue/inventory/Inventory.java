@@ -29,8 +29,8 @@ public class Inventory {
      * Calculates the current weight
      * @return the weight of the inventory
      */
-    public double calcWeight(){
-        double weight = 0D;
+    public float calcWeight(){
+        float weight = 0F;
         for(Map.Entry<Item, Integer> entry : this.items.entrySet()){
             weight += entry.getKey().getWeight() * entry.getValue();
         }
