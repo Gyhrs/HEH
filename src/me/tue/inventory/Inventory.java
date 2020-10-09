@@ -160,8 +160,10 @@ public class Inventory {
                 int j = 0;
                 StringJoiner sj = new StringJoiner(", ", "| ", " |");
                 for(Map.Entry<Item, Integer> entry : this.getItems().entrySet()){
-                    if(j < (i*9) || j >= ((i+1)*9)) continue;
-                    sj.add(entry.getKey().getDisplayName() + "x" + entry.getValue());
+                    if(j >= (i*9) && j < ((i+1)*9)){
+                        sj.add(entry.getKey().getDisplayName() + "x" + entry.getValue());
+                    }
+                    j++;
                 }
                 System.out.println(sj.toString());
             }

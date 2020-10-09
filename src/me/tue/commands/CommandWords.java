@@ -8,7 +8,7 @@ public enum CommandWords {
 
     @Override
     public String toString() {
-        return super.toString();
+        return this.name();
     }
 
     public boolean equals(String string){

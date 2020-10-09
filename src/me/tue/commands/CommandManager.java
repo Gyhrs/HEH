@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class CommandManager {
 
-    private Main main;
+    private final Main main;
 
     public CommandManager(){
         this.main = Main.getInstance();

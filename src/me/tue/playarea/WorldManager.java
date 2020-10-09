@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class WorldManager {
     private static WorldManager instance = null;
-    private ArrayList<World> worlds;
+    private final ArrayList<World> worlds;
     private Location startLocation;
 
     /**
