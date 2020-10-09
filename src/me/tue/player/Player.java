@@ -14,7 +14,7 @@ public class Player {
 
     public Player() {
         this.location = new Location(null, 0, 0);
-        this.inventory = new Inventory("Player Inventory",30);
+        this.inventory = new Inventory("Inventory",30);
         this.addTestItems();
     }
 
