@@ -5,6 +5,7 @@ import me.tue.playarea.Location;
 import me.tue.playarea.Room;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class CommandManager {
 
@@ -50,6 +51,15 @@ public class CommandManager {
                 break;
             case INVENTORY:
                 main.getPlayer().getInventory().display();
+                break;
+            case MAP:
+                Location loc = main.getPlayer().getLocation();
+                List<String> map = loc.getWorld().generateMap(loc);
+                System.out.println("------ MAP of " + loc.getWorld().getName() +"  ------");
+                for(String s : map){
+                    System.out.println(s);
+                }
+                System.out.println("------------------------");
                 break;
             case QUIT:
                 System.out.println("Thank you for playing");

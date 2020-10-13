@@ -11,6 +11,7 @@ import java.util.HashMap;
 public class Room {
     private String description;
     private HashMap<String, Location> exits;
+
     /**
      * Constructor
      * @param description = The description of the room
@@ -40,6 +41,7 @@ public class Room {
     public void setExits(String direction, Location loc ) {
         exits.put(direction.toUpperCase(), loc);
     }
+
 
     @Override
     public String toString() {

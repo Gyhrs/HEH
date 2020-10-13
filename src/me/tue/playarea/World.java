@@ -1,6 +1,6 @@
 package me.tue.playarea;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class World {
 
@@ -83,11 +83,58 @@ public class World {
         worldLayout[x][y] = room;
     }
 
+    public void createRoom(Room room, Location loc) {
+        this.createRoom(room, loc.getX(), loc.getY());
+    }
+
     /**
      * Return the start location
      * @return = Returns the start location
      */
     public Location getStartLocation() {
         return new Location(this,startX,startY);
+    }
+
+    private Room[][] switchCords(Room[][] rooms){
+        Room[][] switched = new Room[height][width];
+        for (int x = 0; x < rooms.length; x++){
+            Room[] xRooms = rooms[x];
+            for(int y = 0; y < xRooms.length; y++){
+                Room room = xRooms[y];
+                switched[y][x] = room;
+            }
+        }
+        return switched;
+    }
+
+    public List<String> generateMap(Location currentLoc){
+        List<String> mapList = new ArrayList<>();
+        Room[][] switchedCords = this.switchCords(this.getRooms());
+
+        for (int y = 0; y < switchedCords.length; y++){
+            Room[] yRooms = switchedCords[y];
+            StringJoiner sj = new StringJoiner(".", "[", "]");
+            for(int x = 0; x < yRooms.length; x++){
+                Room room = yRooms[x];
+                if(room == null) {
+                    sj.add(" ");
+                    continue;
+                }
+                if(currentLoc != null && currentLoc.getWorld().name.equals(this.getName())){
+                    if(currentLoc.getX() == x && currentLoc.getY() == y){
+                        sj.add("P");
+                        continue;
+                    }
+                }
+                if(this.startX == x && this.startY == y){
+                    sj.add("S");
+                    continue;
+                }
+
+                sj.add("R");
+            }
+            mapList.add(sj.toString());
+        }
+        return mapList;
     }
 }

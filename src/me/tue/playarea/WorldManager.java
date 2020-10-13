@@ -22,20 +22,53 @@ public class WorldManager {
      * Creates the world "Hell" with all of its rooms
      */
     public World createHell() {
-        World hell = new World("Hell", "A world of punishment and suffering", 10, 10);
+        World hell = new World("Hell", "A world of punishment and suffering", 9, 9);
+        Location r1Loc = new Location(hell, 8,0);
+        Location r2Loc = new Location(hell, 8,1);
+        Location r3Loc = new Location(hell, 8,2);
+        Location r4Loc = new Location(hell, 8,3);
+
+        Location r5Loc = new Location(hell, 7,1);
+        Location r6Loc = new Location(hell, 7,2);
+        Location r7Loc = new Location(hell, 7,3);
+
         // Creates Room 1 and sets locations
         Room r1 = new Room("Starting Room");
-        r1.setExits("east", new Location(hell,6,5));
-        hell.createRoom(r1, 5,5);
+        r1.setExits("south", r2Loc);
+        hell.createRoom(r1, r1Loc);
         // Creates Room 2...
-        Room r2 = new Room("Test");
-        r2.setExits("west", new Location(hell,5,5));
-        hell.createRoom(r2,6,5);
+        Room r2 = new Room("Cell gaurd room");
+        r2.setExits("north", r1Loc);
+        r2.setExits("south", r3Loc);
+        r2.setExits("west", r5Loc);
+        hell.createRoom(r2,r2Loc);
         //Creates Room 3...
-
+        Room r3 = new Room("Empty room");
+        r3.setExits("north", r2Loc);
+        r3.setExits("south", r3Loc);
+        hell.createRoom(r3,r3Loc);
         //Creates Room 4...
+        Room r4 = new Room("Prisoner storage");
+        r4.setExits("north", r3Loc);
+        hell.createRoom(r4,r4Loc);
+        //Creates Room 5...
+        Room r5 = new Room("Secret tunnel");
+        r5.setExits("south", r6Loc);
+        hell.createRoom(r5,r5Loc);
+        //Creates Room 6...
+        Room r6 = new Room("Kitchen");
+        r6.setExits("north", r5Loc);
+        r6.setExits("south", r7Loc);
+        hell.createRoom(r6,r6Loc);
+        //Creates Room 7...
+        Room r7 = new Room("Canteen");
+        r7.setExits("north", r6Loc);
+        r7.setExits("east", r4Loc);
+        //r7.setExits("west", r6Loc);
+        hell.createRoom(r7,r7Loc);
 
-        hell.setStartLocation(5,5);
+
+        hell.setStartLocation(8,0);
         return hell;
     }
 
