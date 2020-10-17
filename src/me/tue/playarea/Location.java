@@ -4,7 +4,7 @@ package me.tue.playarea;
  *  A util class that helps store a location
  * @author Tue & Philip
  */
-public class Location {
+public class Location implements Cloneable{
     private int x;
     private int y;
     private World world;
@@ -67,6 +67,11 @@ public class Location {
      */
     public void setWorld(World world) {
         this.world = world;
+    }
+
+    @Override
+    public Location clone(){
+        return new Location(this.world, this.x, this.y);
     }
 
     /**

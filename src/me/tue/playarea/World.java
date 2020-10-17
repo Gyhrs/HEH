@@ -6,9 +6,9 @@ public class World {
 
     private final String name;
     private final String description;
-    private int height;
-    private int width;
-    private Room[][] worldLayout;
+    private final int height;
+    private final int width;
+    private final Room[][] worldLayout;
     private int startX = -1;
     private int startY = -1;
 
@@ -107,12 +107,72 @@ public class World {
         return switched;
     }
 
-    public List<String> generateMap(Location currentLoc){
-        List<String> mapList = new ArrayList<>();
-        Room[][] switchedCords = this.switchCords(this.getRooms());
+    public List<String> generateMap(Location currentLoc, boolean betaMap){
+        if(betaMap){
+            Location clonedLoc = currentLoc.clone();
+            boolean hasExists = true;
+            int minX = -1;
+            int maxX = -1;
+            int minY = -1;
+            int maxY = -1;
+            Room currentRoom = this.getRoom(clonedLoc.getX(), clonedLoc.getY());
+            List<Location> foundLocation = new ArrayList<>();
+            System.out.println(foundLocation.stream().toString());
+            while (hasExists){
+                hasExists = false;
+                for(Location loc : currentRoom.getExits()){
+                    if(foundLocation.contains(loc)) continue;
+                    int x = loc.getX();
+                    int y = loc.getY();
+                    if(minX > x || minX == -1) minX = x;
+                    if(maxX < x || maxX == -1) maxX = x;
+                    if(minY > y || minY == -1) minY = y;
+                    if(maxY < y || maxY == -1) maxY = y;
+                    foundLocation.add(loc);
+                    currentRoom = this.getRoom(loc.getX(), loc.getY());
+                    hasExists = true;
+                }
+            }
+            if(minX  < 0 || minY < 0 || maxX < 0 || maxY < 0) return this.generateMap(currentLoc);
+            int mapHeight = (maxY-minY)+1;
+            int mapWidth = (maxX-minX)+1;
+            System.out.println("Height: " + mapHeight + " / Width: " + mapWidth);
+            Room[][] rooms = new Room[mapHeight][mapWidth];
 
-        for (int y = 0; y < switchedCords.length; y++){
-            Room[] yRooms = switchedCords[y];
+
+            /*Min: 5x
+            Max: 7x
+            Diff: 2x
+
+            6-5
+
+             */
+            for(Location loc : foundLocation){
+                Room room = this.getRoom(loc.getX(), loc.getY());
+                if(room == null) continue;
+                int y = loc.getY()-minY;
+                int x = loc.getX()-minX;
+                System.out.println("x: " + x + " / y: " + y);
+                rooms[y][x] = room;
+            }
+            clonedLoc.setX(clonedLoc.getX()-minX);
+            clonedLoc.setY(clonedLoc.getY()-minY);
+            return this.generateMap(rooms, clonedLoc);
+        }
+        return this.generateMap(currentLoc);
+    }
+
+    public List<String> generateMap(Location currentLoc){
+
+        Room[][] switchedCords = this.switchCords(this.getRooms());
+        return this.generateMap(switchedCords, currentLoc);
+    }
+
+    public List<String> generateMap(Room[][] rooms, Location currentLoc){
+        List<String> mapList = new ArrayList<>();
+
+        for (int y = 0; y < rooms.length; y++){
+            Room[] yRooms = rooms[y];
             StringJoiner sj = new StringJoiner(".", "[", "]");
             for(int x = 0; x < yRooms.length; x++){
                 Room room = yRooms[x];

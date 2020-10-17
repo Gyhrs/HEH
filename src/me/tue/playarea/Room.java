@@ -1,6 +1,7 @@
 package me.tue.playarea;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -31,6 +32,10 @@ public class Room {
 
     public Location getExit(String direction){
         return this.exits.get(direction.toUpperCase());
+    }
+
+    public Collection<Location> getExits(){
+        return exits.values();
     }
 
     /**

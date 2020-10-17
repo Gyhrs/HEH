@@ -54,7 +54,11 @@ public class CommandManager {
                 break;
             case MAP:
                 Location loc = main.getPlayer().getLocation();
-                List<String> map = loc.getWorld().generateMap(loc);
+                boolean betaMap = false;
+                if(command.hasArguments()){
+                    betaMap = Boolean.parseBoolean(command.getArgument(0));
+                }
+                List<String> map = loc.getWorld().generateMap(loc, betaMap);
                 System.out.println("------ MAP of " + loc.getWorld().getName() +"  ------");
                 for(String s : map){
                     System.out.println(s);
