@@ -1,5 +1,7 @@
 package me.tue.playarea;
 
+import java.math.RoundingMode;
+import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 
 /**
@@ -57,6 +59,8 @@ public class WorldManager {
 
 
         Location r27Loc = new Location(hell, 3,4);
+        Location r28Loc = new Location(hell, 2,4);
+        Location r29Loc = new Location(hell, 1,4);
 
         // Creates Room 1 and sets locations
         Room r1 = new Room("Starting Room");
@@ -144,6 +148,7 @@ public class WorldManager {
         //Creates Room 19...
         Room r19 = new Room("Outside Lucifer's castle Gate");
         r19.setExits("east", r20Loc);
+        r19.setExits("south", r13Loc);
         //Creates Room 20...
         Room r20 = new Room("Inside hallway");
         r20.setExits("north", r21Loc);
@@ -164,17 +169,28 @@ public class WorldManager {
         Room r25 = new Room("Lucifer's Throne Room");
         r25.setExits("west", r20Loc);
         r25.setExits("south", r26Loc);
-
+        //Creates Room 26...
+        Room r26 = new Room("Lucifer's Loot");
+        r26.setExits("north", r5Loc);
+        //Creates Room 27...
+        Room r27 = new Room("Gateway Entrance");
+        r27.setExits("west", r28Loc);
+        //Creates Room 28...
+        Room r28 = new Room("Gate Gaurdian");
+        r28.setExits("west", r29Loc);
+        //Creates Room 29...
+        Room r29 = new Room("Gate to Earth");
+        r29.setExits("up", e1Loc);
         hell.setStartLocation(8,0);
         return hell;
     }
-
     /**
      * Creates the world "Earth" with all of its rooms
      */
     public World createEarth() {
         World earth = new World("Earth", "The mortal realm",10,10);
 
+        Location e1Loc = new Location(earth, 0,0);
         return earth;
     }
 
