@@ -3,7 +3,9 @@ package me.tue.commands;
 import me.tue.Main;
 import me.tue.playarea.Location;
 import me.tue.playarea.Room;
+import me.tue.utils.ImageUtil;
 
+import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.List;
 
@@ -64,6 +66,17 @@ public class CommandManager {
                     System.out.println(s);
                 }
                 System.out.println("------------------------");
+                break;
+            case IMAGE:
+                String imagePath = "magicmike.jpeg";
+                if(command.hasArguments()){
+                    imagePath = command.getArgument(0);
+                }
+                BufferedImage image = ImageUtil.getImage("images/" + imagePath);
+                List<String> lines = ImageUtil.convertImage(image);
+                for(String s : lines){
+                    System.out.println(s);
+                }
                 break;
             case QUIT:
                 System.out.println("Thank you for playing");
