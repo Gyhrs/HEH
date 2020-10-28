@@ -12,9 +12,8 @@ import java.util.List;
 public class ImageUtil {
 
     public static BufferedImage getImage(String path) {
-        System.out.println(path);
         URL url = Main.class.getResource( "/me/tue/"+ path);
-        System.out.println(url);
+        if(url == null) return null;
         try {
             return ImageIO.read(url);
         } catch (IOException e) {
@@ -38,25 +37,34 @@ public class ImageUtil {
         List<String> strings = new ArrayList<>();
         int width = img.getWidth();
         int height = img.getHeight();
-        System.out.println(width + " / " + height);
         for (int y = 0; y < height; y++) {
             StringBuilder sb = new StringBuilder();
             for (int x = 0; x < width; x++) {
 
-                int pixel = convertPixelToGreyScale(img.getRGB(x, y));
-
+                //int pixel = convertPixelToGreyScale(img.getRGB(x, y));
+                int pixel = img.getRGB(x,y);
                 int alpha = (pixel >> 24) & 0xff;
                 int red = (pixel >> 16) & 0xff;
                 int green = (pixel >> 8) & 0xff;
                 int blue = pixel & 0xff;
                 double Y = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
-                if(Y < 50 && alpha != 0) sb.append("&&");
+                if(Y < 50 && alpha != 0) sb.append("**");
                 else sb.append("  ");
 
             }
             strings.add(sb.toString());
         }
         return strings;
+    }
+
+    public static void displayImage(String path){
+        BufferedImage image = ImageUtil.getImage(path);
+        if(image != null){
+            List<String> imageLines = ImageUtil.convertImage(image);
+            imageLines.forEach(System.out::println);
+        }else {
+            throw new NullPointerException();
+        }
     }
 
 }

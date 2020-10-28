@@ -7,18 +7,22 @@ public class Monster extends Entity {
     protected int hp;
 
     public Monster(String race, Location location, float damage, int hp) {
-        super(race, location);
+        super(race, location, true);
         this.damage = damage;
         this.hp = hp;
     }
 
-    public float dealDamage() {
+    public int getHealth(){
+        return hp;
+    }
+
+    public float getDamage() {
         return damage;
     }
 
     public float takeDamage(float damage) {
         hp = (int) Math.floor(hp-damage);
-        if(hp >= 0) {
+        if(hp <= 0) {
             super.kill();
             hp = 0;
         }

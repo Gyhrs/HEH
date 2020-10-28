@@ -20,12 +20,15 @@ public class Main {
     private Player player;
     private static Main instance;
     private CommandManager commandManager;
+    private boolean adminMode = false;
 
     /**
      * Constructor
      */
-    public Main(){
+    public Main(boolean adminMode){
         instance = this;
+        this.adminMode = adminMode;
+        if(adminMode) System.out.println("Running in admin mode");
         this.player = new Player();
         this.parser = new Parser();
         this.worldManager = WorldManager.getInstance();
@@ -64,10 +67,23 @@ public class Main {
         return this.parser;
     }
 
+    public boolean isAdminMode() {
+        return adminMode;
+    }
+
     /**
      * Stuff to run on start
      */
-    public static void main(String[] args) { new Main();}
+    public static void main(String[] args) {
+        if(args.length == 0) new Main(false);
+        else{
+            String admin = args[0];
+            boolean adminMode = false;
+            if(admin != null && admin.equalsIgnoreCase("true")) adminMode = true;
+            new Main(adminMode);
+        }
+
+    }
 
     /**
      * Get running

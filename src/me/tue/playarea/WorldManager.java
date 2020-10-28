@@ -1,8 +1,12 @@
 package me.tue.playarea;
 
+import me.tue.Entities.Goblin;
+import me.tue.Entities.Spider;
+
 import java.math.RoundingMode;
 import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *  A class that helps store and control the worlds
@@ -85,6 +89,9 @@ public class WorldManager {
         //Creates Room 5...
         Room r5 = new Room("Secret tunnel");
         r5.setExits("south", r6Loc);
+        r5.addEntities(new Spider(r6Loc));
+        r5.addEntities(new Spider(r6Loc));
+        r5.addEntities(new Goblin(r6Loc));
         hell.createRoom(r5,r5Loc);
         //Creates Room 6...
         Room r6 = new Room("Kitchen");
@@ -176,11 +183,12 @@ public class WorldManager {
         Room r27 = new Room("Gateway Entrance");
         r27.setExits("west", r28Loc);
         //Creates Room 28...
-        Room r28 = new Room("Gate Gaurdian");
+        Room r28 = new Room("Gate Guardian");
         r28.setExits("west", r29Loc);
         //Creates Room 29...
         Room r29 = new Room("Gate to Earth");
-        r29.setExits("up", e1Loc);
+        /*r29.setExits("up", e1Loc);
+        */
         hell.setStartLocation(8,0);
         return hell;
     }
@@ -205,6 +213,16 @@ public class WorldManager {
 
     public void addWorld(World world) {
         worlds.add(world);
+    }
+
+    public List<World> getWorlds() {
+        return worlds;
+    }
+
+    public Room getRoomFromLocation(Location location){
+        World world = this.getWorlds().stream().filter(w -> w.equals(location.getWorld())).findFirst().orElse(null);
+        if(world == null) return null;
+        return world.getRoom(location.getX(), location.getY());
     }
 
 
