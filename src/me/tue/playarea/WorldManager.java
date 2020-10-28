@@ -1,5 +1,7 @@
 package me.tue.playarea;
 
+import java.math.RoundingMode;
+import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 
 /**
@@ -38,6 +40,27 @@ public class WorldManager {
 
         Location r11Loc = new Location(hell, 5,3);
         Location r12Loc = new Location(hell, 5,4);
+
+        Location r13Loc = new Location(hell, 7,5);
+        Location r14Loc = new Location(hell, 7,6);
+        Location r15Loc = new Location(hell, 7,7);
+        Location r16Loc = new Location(hell, 6,7);
+        Location r17Loc = new Location(hell, 5,7);
+        Location r18Loc = new Location(hell,5,8);
+
+        Location r19Loc = new Location(hell, 2,1);
+        Location r20Loc = new Location(hell, 3,1);
+        Location r21Loc = new Location(hell, 3,0);
+        Location r22Loc = new Location(hell, 4,0);
+        Location r23Loc = new Location(hell, 5,0);
+        Location r24Loc = new Location(hell, 5,1);
+        Location r25Loc = new Location(hell, 4,1);
+        Location r26Loc = new Location(hell, 4,2);
+
+
+        Location r27Loc = new Location(hell, 3,4);
+        Location r28Loc = new Location(hell, 2,4);
+        Location r29Loc = new Location(hell, 1,4);
 
         // Creates Room 1 and sets locations
         Room r1 = new Room("Starting Room");
@@ -98,19 +121,76 @@ public class WorldManager {
         //Creates Room 11...
         Room r12 = new Room("Outside");
         //r12.setExits("tp", r13Loc);
-        hell.createRoom(r12,r12Loc);
-
-
+        hell.createRoom(r12, r12Loc);
+        //Creates Room 13...
+        Room r13 = new Room("North of The Old Hut (TP2)");
+        r13.setExits("south", r14Loc);
+        r13.setExits("north", r19Loc);
+        hell.createRoom(r13, r13Loc);
+        //Creates Room 14...
+        Room r14 = new Room("Old Man's Hut");
+        r14.setExits("south", r15Loc);
+        r14.setExits("west", r27Loc);
+        r14.setExits("north", r13Loc);
+        //Creates Room 15...
+        Room r15 = new Room("Entrance to satanic church");
+        r15.setExits("west", r16Loc);
+        //Creates Room 16...
+        Room r16 = new Room("Great fight in the church");
+        r16.setExits("west", r17Loc);
+        //Creates Room 17...
+        Room r17 = new Room("Big boss at the altar");
+        r17.setExits("south", r18Loc);
+        //Creates Room r18...
+        Room r18 = new Room("Loot room Swamp");
+        r18.setExits("north", r17Loc);
+        r18.setExits("east", r14Loc);
+        //Creates Room 19...
+        Room r19 = new Room("Outside Lucifer's castle Gate");
+        r19.setExits("east", r20Loc);
+        r19.setExits("south", r13Loc);
+        //Creates Room 20...
+        Room r20 = new Room("Inside hallway");
+        r20.setExits("north", r21Loc);
+        r20.setExits("east", r19Loc);
+        //Creates Room 21...
+        Room r21 = new Room("Left wing");
+        r21.setExits("east", r22Loc);
+        //Creates Room 22...
+        Room r22 = new Room("Left wing pt 2");
+        r22.setExits("west", r23Loc);
+        //Creates Room 23...
+        Room r23 = new Room("Left wing pt 3");
+        r23.setExits("south", r24Loc);
+        //Creates Room 24...
+        Room r24 = new Room("Behind Throne Room");
+        r24.setExits("west", r25Loc);
+        //Creates Room 25...
+        Room r25 = new Room("Lucifer's Throne Room");
+        r25.setExits("west", r20Loc);
+        r25.setExits("south", r26Loc);
+        //Creates Room 26...
+        Room r26 = new Room("Lucifer's Loot");
+        r26.setExits("north", r5Loc);
+        //Creates Room 27...
+        Room r27 = new Room("Gateway Entrance");
+        r27.setExits("west", r28Loc);
+        //Creates Room 28...
+        Room r28 = new Room("Gate Gaurdian");
+        r28.setExits("west", r29Loc);
+        //Creates Room 29...
+        Room r29 = new Room("Gate to Earth");
+        r29.setExits("up", e1Loc);
         hell.setStartLocation(8,0);
         return hell;
     }
-
     /**
      * Creates the world "Earth" with all of its rooms
      */
     public World createEarth() {
         World earth = new World("Earth", "The mortal realm",10,10);
 
+        Location e1Loc = new Location(earth, 0,0);
         return earth;
     }
 
