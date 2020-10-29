@@ -41,10 +41,17 @@ public class Main {
 
     private void play(){
         running = true;
+        printWelcomeMessage();
         while(running) {
             Command command = parser.getCommand();
             commandManager.run(command);
         }
+    }
+
+    private void printWelcomeMessage(){
+        System.out.println("Welcome player to HEH");
+        System.out.println("Type \"go\" to move between rooms");
+        System.out.println("Type \"help\" see all available commands");
     }
 
     public Player getPlayer() {

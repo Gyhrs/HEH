@@ -139,54 +139,70 @@ public class WorldManager {
         r14.setExits("south", r15Loc);
         r14.setExits("west", r27Loc);
         r14.setExits("north", r13Loc);
+        hell.createRoom(r14, r14Loc);
         //Creates Room 15...
         Room r15 = new Room("Entrance to satanic church");
         r15.setExits("west", r16Loc);
+        hell.createRoom(r15, r15Loc);
         //Creates Room 16...
         Room r16 = new Room("Great fight in the church");
         r16.setExits("west", r17Loc);
+        hell.createRoom(r16, r16Loc);
         //Creates Room 17...
         Room r17 = new Room("Big boss at the altar");
         r17.setExits("south", r18Loc);
+        hell.createRoom(r17, r17Loc);
         //Creates Room r18...
         Room r18 = new Room("Loot room Swamp");
         r18.setExits("north", r17Loc);
         r18.setExits("east", r14Loc);
+        hell.createRoom(r18, r18Loc);
         //Creates Room 19...
         Room r19 = new Room("Outside Lucifer's castle Gate");
         r19.setExits("east", r20Loc);
         r19.setExits("south", r13Loc);
+        hell.createRoom(r19, r19Loc);
         //Creates Room 20...
         Room r20 = new Room("Inside hallway");
         r20.setExits("north", r21Loc);
         r20.setExits("east", r19Loc);
+        hell.createRoom(r20, r20Loc);
         //Creates Room 21...
         Room r21 = new Room("Left wing");
         r21.setExits("east", r22Loc);
+        hell.createRoom(r21, r21Loc);
         //Creates Room 22...
         Room r22 = new Room("Left wing pt 2");
         r22.setExits("west", r23Loc);
+        hell.createRoom(r22, r22Loc);
         //Creates Room 23...
         Room r23 = new Room("Left wing pt 3");
         r23.setExits("south", r24Loc);
+        hell.createRoom(r23, r23Loc);
         //Creates Room 24...
         Room r24 = new Room("Behind Throne Room");
         r24.setExits("west", r25Loc);
+        hell.createRoom(r24, r24Loc);
         //Creates Room 25...
         Room r25 = new Room("Lucifer's Throne Room");
         r25.setExits("west", r20Loc);
         r25.setExits("south", r26Loc);
+        hell.createRoom(r25, r25Loc);
         //Creates Room 26...
         Room r26 = new Room("Lucifer's Loot");
         r26.setExits("north", r5Loc);
+        hell.createRoom(r26, r26Loc);
         //Creates Room 27...
         Room r27 = new Room("Gateway Entrance");
         r27.setExits("west", r28Loc);
+        hell.createRoom(r27, r27Loc);
         //Creates Room 28...
         Room r28 = new Room("Gate Guardian");
         r28.setExits("west", r29Loc);
+        hell.createRoom(r28, r28Loc);
         //Creates Room 29...
         Room r29 = new Room("Gate to Earth");
+        hell.createRoom(r29, r29Loc);
         /*r29.setExits("up", e1Loc);
         */
         hell.setStartLocation(8,0);

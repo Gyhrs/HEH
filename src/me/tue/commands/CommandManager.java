@@ -31,8 +31,7 @@ public class CommandManager {
         main.getPlayer().setLocation(location);
         System.out.println("You enter a new room... " + nextRoom.getDescription());
         if(nextRoom.hasEntities()) nextRoom.displayEntities();
-
-        System.out.println(nextRoom.toString());
+        if(!nextRoom.containsHostileMonsters()) System.out.println(nextRoom.getExitString());
     }
 
     public void run(Command command) {
@@ -54,13 +53,18 @@ public class CommandManager {
 
             case HELP:
                 System.out.println("Here are your commands");
-                System.out.println(Arrays.toString(CommandWords.values()));
+                System.out.println(Arrays.toString(Arrays.stream(CommandWords.values()).filter(e -> main.isAdminMode() || !e.isAdmin).toArray()));
                 break;
 
             case GO:
+                if(currentRoom.containsHostileMonsters()){
+                    System.out.println("Kill the monsters before going to another room");
+                    currentRoom.displayEntities(true);
+                    return;
+                }
                 if(!command.hasArguments()){
                     System.out.println("Go where?");
-                    System.out.println(currentRoom.toString());
+                    System.out.println(currentRoom.getExitString());
                     return;
                 }
                 String direction = command.getArgument(0);

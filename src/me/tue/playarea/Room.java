@@ -43,6 +43,14 @@ public class Room {
         return entities;
     }
 
+    public boolean containsHostileMonsters(){
+        if(this.getEntities() == null || this.getEntities().isEmpty()) return false;
+        for(Entity e : this.getEntities()){
+            if(e instanceof Monster && e.getHostile()) return true;
+        }
+        return false;
+    }
+
     public boolean hasEntities(){
         return this.getEntities() != null && !this.getEntities().isEmpty();
     }
@@ -98,9 +106,17 @@ public class Room {
         exits.put(direction.toUpperCase(), loc);
     }
 
+    public String getExitString(){
+        return "{" + Arrays.toString(exits.keySet().toArray()) + "}";
+    }
 
     @Override
     public String toString() {
-        return "{" + Arrays.toString(exits.keySet().toArray()) + "}";
+        return "Room{" +
+                "description='" + description + '\'' +
+                ", exits=" + exits +
+                ", entities=" + entities +
+                ", itemsOnFloor=" + itemsOnFloor +
+                '}';
     }
 }
