@@ -26,8 +26,8 @@ public class Parser {
         }
         if(word != null && !word.equals(CommandWords.UNKNOWN)) {
             String[] arguments = Arrays.copyOfRange(playerInput, 1, playerInput.length);
-            return new Command(word, arguments);
+            return new Command(word,playerInput[0], arguments);
         }
-        return new Command(CommandWords.UNKNOWN, null);
+        return new Command(CommandWords.UNKNOWN, playerInput[0], null);
     }
 }

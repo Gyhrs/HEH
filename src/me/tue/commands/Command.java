@@ -7,13 +7,15 @@ package me.tue.commands;
 public class Command {
     CommandWords commandType;
     String[] arguments;
+    String label;
 
     /**
      * Constructor
      * @param c = The command type
      * @param arguments = The arguments of the command
      */
-    public Command(CommandWords c, String[] arguments) {
+    public Command(CommandWords c, String label,  String[] arguments) {
+        this.label = label;
         this.commandType = c;
         this.arguments = arguments;
     }
