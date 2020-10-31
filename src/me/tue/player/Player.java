@@ -19,7 +19,7 @@ public class Player {
     public Player() {
         this.location = new Location(null, 0, 0);
         this.inventory = new Inventory("Inventory",30);
-        this.addTestItems();
+        //this.addTestItems();
     }
 
     private void addTestItems(){

@@ -2,6 +2,7 @@ package me.tue.playarea;
 
 import me.tue.Entities.Entity;
 import me.tue.Entities.Monster;
+import me.tue.inventory.Inventory;
 import me.tue.inventory.Item;
 
 import java.util.*;
@@ -16,6 +17,7 @@ public class Room {
     private final HashMap<String, Location> exits;
     private final List<Entity> entities;
     private final List<Item> itemsOnFloor;
+    private Inventory loot;
 
     /**
      * Constructor

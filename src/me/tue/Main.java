@@ -89,7 +89,13 @@ public class Main {
             if(admin != null && admin.equalsIgnoreCase("true")) adminMode = true;
             new Main(adminMode);
         }
-
+        /* - ON SHUTDOWN - */
+        Runtime.getRuntime().addShutdownHook(new Thread(){
+            @Override
+            public void run() {
+                System.out.println("Program stopped");
+            }
+        });
     }
 
     /**
